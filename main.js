@@ -1,0 +1,2 @@
+const selected=new URLSearchParams(location.search).get('app');
+document.querySelectorAll('.download').forEach(async item=>{const note=item.querySelector('small'),original=note.textContent;try{const res=await fetch(item.href,{method:'HEAD',cache:'no-store'});if(!res.ok)throw Error();}catch{item.setAttribute('aria-disabled','true');item.addEventListener('click',e=>e.preventDefault());note.textContent='準備中';}if(item.id===selected){item.classList.add('active');setTimeout(()=>item.scrollIntoView({block:'center',behavior:'smooth'}),250)}});
